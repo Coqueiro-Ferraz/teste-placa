@@ -91,7 +91,7 @@ void MP_antihora(int passos)
     passo_fim();
 }
 
-void rotacionar_MP(int horario, float graus) //64 passos por volta = 5,625 graus por passo
+void rotacionar_driver(int horario, float graus) //64 passos por volta = 5,625 graus por passo
 {
     float passos = graus / 2.8125;
     ESP_LOGI(TAG, "Recebido %.1f graus, %d passos", graus, (int)passos);
@@ -148,7 +148,7 @@ void DRV_fechar(int passos)
     DRV0;
 }
 
-void rotacionar_driver(int abrir, float graus, uint8_t saidas_atual) //64 passos por volta = 5,625 graus por passo
+void rotacionar_MP(int abrir, float graus, uint8_t saidas_atual) //64 passos por volta = 5,625 graus por passo
 {
     float passos = graus / 2.8125;
     outputs = saidas_atual;
@@ -159,7 +159,7 @@ void rotacionar_driver(int abrir, float graus, uint8_t saidas_atual) //64 passos
 
 
 
-void iniciar_MP()
+void iniciar_driver()
 {
     gpio_reset_pin(MP1);
     gpio_set_direction(MP1, GPIO_MODE_OUTPUT);
@@ -179,7 +179,7 @@ void iniciar_MP()
 
     ESP_LOGI(TAG, "MP Configurado modo Driver ULN2003");
 }
-void iniciar_driver(int Fim_de_curso_inicial, int Fim_de_curso_final)
+void iniciar_MP(int Fim_de_curso_inicial, int Fim_de_curso_final)
 {
     FC_INI = Fim_de_curso_inicial;
     FC_FIN = Fim_de_curso_final; 
