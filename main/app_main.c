@@ -11,7 +11,7 @@
 *   Permite o controle das entradas e saídas digitais, entradas analógicas, display LCD e teclado. 
 *   Cada biblioteca pode ser consultada na respectiva pasta em componentes
 *   Existem algumas imagens e outros documentos na pasta Recursos
-*   O código principal pode ser escrito a partir da linha 86
+*   O código principal pode ser escrito a partir da linha 83
 */
 
 // Área de inclusão das bibliotecas
@@ -32,6 +32,7 @@
 //-----------------------------------------------------------------------------------------------------------------------
 
 #define IN(x) (entradas>>x)&1
+#define OUT(x) (1 << (x))
 
 // Área de declaração de variáveis e protótipos de funções
 //-----------------------------------------------------------------------------------------------------------------------
@@ -90,7 +91,7 @@ void app_main(void)
         tecla = le_teclado();     
         if(tecla > '0' && tecla <= '8')
         {
-            saidas = 1 << (tecla - '0' - 1);
+            saidas ^= OUT(tecla - '0' - 1);
         }            
         else if (tecla == '9')
         {
